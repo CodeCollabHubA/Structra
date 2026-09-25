@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Structra · Building intelligence</title>
+  <meta name="description" content="A local, interactive building sustainability passport demo with fictional UAE buildings.">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='civic.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='shm.css') }}">
+  <script src="{{ url_for('static', filename='shm.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='civic.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body>
+<svg class="icon-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+<symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+<symbol id="i-building" viewBox="0 0 24 24"><path d="M3 21h18M6 21V4l12-2v19M10 7h4m-4 4h4m-4 4h4m-4 6v-3h4v3"/></symbol>
+<symbol id="i-data" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 9h16M10 9v12m-6-6h16"/></symbol>
+<symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h4m5 0h7M4 17h10m5 0h1"/><circle cx="10.5" cy="7" r="2.5"/><circle cx="16.5" cy="17" r="2.5"/></symbol>
+<symbol id="i-passport" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M9 16h6M8 3v18"/></symbol>
+<symbol id="i-energy" viewBox="0 0 24 24"><path d="m13 2-9 12h7l-1 8 10-13h-8z"/></symbol>
+<symbol id="i-water" viewBox="0 0 24 24"><path d="M12 2S5 10 5 15a7 7 0 0 0 14 0c0-5-7-13-7-13Z"/><path d="M9 15a3 3 0 0 0 3 3"/></symbol>
+<symbol id="i-leaf" viewBox="0 0 24 24"><path d="M20 3c-8-2-16 3-15 10s12 8 15-10ZM4 21 15 10"/></symbol>
+<symbol id="i-health" viewBox="0 0 24 24"><path d="m12 2 8 4v6c0 5-8 10-8 10S4 17 4 12V6ZM8 12l3 3 5-6"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1 1m12 12 1 1M5 19l1-1M18 6l1-1"/></symbol>
+<symbol id="i-civic" viewBox="0 0 24 24"><path d="m3 8 9-5 9 5v2H3zm2 4v7m5-7v7m4-7v7m5-7v7M3 21h18"/></symbol>
+<symbol id="i-pulse" viewBox="0 0 24 24"><path d="M2 12h4l3-7 5 14 3-7h5"/></symbol>
+</defs></svg>
+<aside class="sidebar">
+  <a class="brand" href="#overview" aria-label="Structra home"><span class="brand-mark">S</span>structra<span class="brand-dot">.</span></a>
+  <div class="workspace-label">BUILDING INTELLIGENCE</div>
+  <nav aria-label="Main navigation">
+    <button class="nav-item active" data-view="overview"><svg><use href="#i-grid"/></svg>Overview</button>
+    <button class="nav-item" data-view="shm"><svg><use href="#i-pulse"/></svg>Structural monitoring</button>
+    <button class="nav-item" data-view="data"><svg><use href="#i-data"/></svg>Building data</button>
+    <button class="nav-item" data-view="simulator"><svg><use href="#i-sliders"/></svg>Upgrade simulator<span class="nav-tag">TRY IT</span></button>
+    <button class="nav-item" data-view="passport"><svg><use href="#i-passport"/></svg>Building passport</button>
+    <button class="nav-item" data-view="civic"><svg><use href="#i-civic"/></svg>Municipal pilot</button>
+  </nav>
+  <div class="sidebar-bottom"><div class="demo-indicator"><span></span>Hackathon workspace</div><p>Built for the UAE.<br>Ready for the next step.</p><button class="sidebar-pilot" data-go="civic">Dubai + Abu Dhabi <span>↗</span><small>Explore our proposed pilot</small></button><div class="sidebar-foot">LOCAL DEMO <span>v1.0</span></div></div>
+</aside>
+<div class="app-shell">
+  <header class="topbar"><div class="breadcrumb">Workspace <span>/</span> <strong id="page-crumb">Overview</strong></div><span class="sample-badge"><span></span>Sample data · 2025</span><span class="avatar" title="Structra demo workspace">ST</span></header>
+  <main>
+    <div class="page-heading"><div><div class="eyebrow">YOUR BUILDING, BETTER UNDERSTOOD</div><h1 id="page-title">A clearer picture. A lighter footprint.</h1><p id="page-subtitle">Turn everyday building data into your next sustainability decision.</p></div><button class="button primary" id="add-building"><svg><use href="#i-plus"/></svg>Add building</button></div>
+    <div class="building-toolbar"><div class="select-wrap"><svg><use href="#i-building"/></svg><label class="sr-only" for="building-select">Select building</label><select id="building-select" disabled><option>Loading buildings…</option></select></div><div class="toolbar-meta"><span class="status-dot"></span><span id="record-status">Connecting to local records</span></div><button class="text-button" id="analyze-button">Run analysis <span>↗</span></button></div>
+    <div id="notice" role="status" aria-live="polite" hidden></div>
+    <div id="loading" class="empty-state">Loading your building passport…</div>
+    <section id="view-overview" class="view" hidden></section>
+    <section id="view-shm" class="view" hidden></section>
+    <section id="view-data" class="view" hidden></section>
+    <section id="view-simulator" class="view" hidden></section>
+    <section id="view-passport" class="view" hidden></section>
+    <section id="view-civic" class="view" hidden></section>
+    <footer class="page-footer"><span><b>structra.</b> Better buildings start with better decisions.</span><span>Illustrative estimates · No external AI or certification</span></footer>
+  </main>
+</div>
+<dialog id="building-dialog"><form id="building-form"><div class="dialog-heading"><div><div class="eyebrow">GROW YOUR WORKSPACE</div><h2>Add a demo building</h2></div><button type="button" class="close-dialog" aria-label="Close">×</button></div><p class="muted">Create a building with 12 months of generated sample data. You can edit every month afterward.</p>
+<div class="form-grid"><label class="span-2">Building name<input name="name" required maxlength="100" placeholder="e.g. Palm Avenue Offices"></label><label>Emirate<select name="city"><option>Dubai</option><option>Abu Dhabi</option><option>Sharjah</option><option>Ajman</option><option>Ras Al Khaimah</option><option>Fujairah</option><option>Umm Al Quwain</option></select></label><label>District<input name="district" required maxlength="100" placeholder="e.g. Business Bay"></label><label>Building type<select name="building_type"><option>Office</option><option>Residential</option><option>Mixed-use</option><option>Retail</option></select></label><label>Year built<input name="year_built" type="number" min="1950" max="2026" value="2015" required></label><label>Floor area (m²)<input name="floor_area_m2" type="number" min="100" max="1000000" value="12000" required></label><label>Occupants<input name="occupants" type="number" min="1" max="100000" value="600" required></label><label>Floors<input name="floors" type="number" min="1" max="200" value="8" required></label><label>Starting performance<select name="seed_profile"><option value="typical">Typical operations</option><option value="needs_attention">Needs attention</option><option value="efficient">Efficient operations</option></select></label><label class="span-2">Building story (optional)<textarea name="description" maxlength="500" rows="2" placeholder="A fictional building for our hackathon demonstration."></textarea></label></div><p id="building-error" class="form-error" role="alert"></p><div class="dialog-actions"><button type="button" class="button secondary close-dialog">Cancel</button><button class="button primary" type="submit">Create sample building</button></div></form></dialog>
+<dialog id="month-dialog"><form id="month-form"><div class="dialog-heading"><div><div class="eyebrow">MONTHLY RECORD</div><h2 id="month-title">Edit month</h2></div><button type="button" class="close-dialog" aria-label="Close">×</button></div><p class="muted">Update sample records and recalculate the passport.</p><div class="form-grid" id="month-fields"></div><p id="month-error" class="form-error" role="alert"></p><div class="dialog-actions"><button type="button" class="button secondary close-dialog">Cancel</button><button class="button primary" type="submit">Save & recalculate</button></div></form></dialog>
+</body></html>
